@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/codingmaniac227/project-express-backend#readme",
   "dependencies": {
+    "ejs": "^3.1.10",
     "express": "^5.1.0"
   },
   "devDependencies": {
