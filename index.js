@@ -6,18 +6,20 @@ const app = express()
 
 const PORT = 8080
 
-app.use((req,res,next) => {
-    console.log('Start')
 
-    res.on('finish', () => {
-        console.log('End')
-    })
-    next()
-})
 
 app.get('/', (req, res) => {
     console.log('Middle')
      res.send('Hello, Express')
+})
+
+app.get('/error', () => {
+    throw new Error('This is test error')
+})
+
+app.use((err, req, res, next) => {
+    console.error(err.message)
+    res.send('Internal Server Error')
 })
 
 app.listen(PORT, () => {
