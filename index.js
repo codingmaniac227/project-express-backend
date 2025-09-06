@@ -15,31 +15,16 @@ app.use('/user', router)
 
 app.use(express.json())
 
-app.post('/users', (req, res) => {
-    const { name, email } = req.body
-    res.json({
-        message:`User ${name} with email ${email} created successfully`
-    })
-})
-/* Express.json will convert the json 
-   formatted body data and pass it in object and add it in the 
-   request body 
-*/
-app.put('/users/:id', (req,res) => {
-    const userId = req.params.id
-    const {name, email} = req.body
-    res.json({
-        message:`User ${userId} updated to ${name}, ${email}`
-    })
+app.get('/', (req,res) => {
+    res.send('Hello, Express')
 })
 
-app.delete('/users/:id', (req, res) => {
-    const userId = req.params.id
+app.get('/things/:name/:id', (req,res) => {
+    const { name, id } = req.params
     res.json({
-        message:`User with ID ${userId} deleted successfully`
+        message: `ID - ${id}; Name - ${name}`
     })
 })
-
 
 app.listen(PORT, () => {
     console.log(`Server now running on http://localhost:${PORT}`)
