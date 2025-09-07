@@ -3,7 +3,10 @@ import router from './route.js'
 import multer from 'multer'
 
 const storage = multer.diskStorage({
-    destination: 'uploads'
+    destination: 'uploads',
+    filename: (req,file,cb) => {
+        cb(null, file.filename+'_'+Date.now()+file.originalname)
+    }
 })
 
 const app = express()
