@@ -1,16 +1,15 @@
 import express from 'express'
 import router from './route.js'
 import multer from 'multer'
-
-const storage = multer.diskStorage({
-    destination: 'uploads',
-    filename: (req,file,cb) => {
-        cb(null, file.filename+'_'+Date.now()+file.originalname)
-    }
-})
+import { storage } from './config/multer.js'
 
 const app = express()
-const upload = multer({storage})
+const upload = multer({
+    storage,
+    limits: {
+        fileSize:1024000
+    }
+})
 const PORT = 8080
 
 
