@@ -2,10 +2,14 @@ import express from 'express'
 import router from './route.js'
 import multer from 'multer'
 
+const storage = multer.diskStorage({
+    destination: 'uploads'
+})
 
 const app = express()
-const upload = multer()
+const upload = multer({storage})
 const PORT = 8080
+
 
 //app.use(express.urlencoded({extended:true}))
 app.use(upload.single('image'))
