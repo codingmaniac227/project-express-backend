@@ -17,15 +17,19 @@ app.get('/', (req, res) => {
 
 // Creates Data in MongoDB
 app.post('/person', express.json(), async (req, res) => {
-    const { email, name, age } = req.body
-    const newPerson = new Person({
-        name,
-        age, 
-        email
-    })
-    await newPerson.save()
-    console.log(newPerson)
-    res.send('Person Added')
+    try {
+        const { email, name, age } = req.body
+        const newPerson = new Person({
+            name,
+            age, 
+            email
+        })
+        await newPerson.save()
+        console.log(newPerson)
+        res.send('Person Added')
+    } catch (error) {
+        res.send(error.message)
+    }
 })
 
 // Updating Data in MongoDB
