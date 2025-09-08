@@ -30,6 +30,7 @@ app.post('/person', express.json(), async (req, res) => {
 
 // Updating Data in MongoDB
 app.put('/person', express.json(), async (req, res) => {
+    
     const { name } = req.body
 
     const personData = await Person.find({name})
