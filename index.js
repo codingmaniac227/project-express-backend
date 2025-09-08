@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     res.send('Hello Express')
 })
 
-// Saving Data in MongoDB
+// Creates Data in MongoDB
 app.post('/person', express.json(), async (req, res) => {
     const { email, name, age } = req.body
     const newPerson = new Person({
@@ -28,14 +28,22 @@ app.post('/person', express.json(), async (req, res) => {
     res.send('Person Added')
 })
 
-// Creating Data in MongoDB
+// Updating Data in MongoDB
 app.put('/person', express.json(), async (req, res) => {
-    const { email } = req.body
+    const { name } = req.body
 
-    const personData = await Person.find({email})
+    const personData = await Person.find({name})
 
     console.log(personData)
     res.send('Person Added')
+})
+
+app.delete('/person/:id', async (req, res) => {
+    const { id } = req.params
+
+    await Person.findByIdAndDelete(id)
+
+    res.send('User Deleted')
 })
 
 app.listen(PORT, () => {
