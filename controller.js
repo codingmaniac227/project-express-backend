@@ -3,5 +3,5 @@ export const userLogin = (req, res) => {
 }
 
 export const userSignup = (req, res) => {
-    res.send('this is user sigin route')   
+    res.send('this is user signin routes')   
 }
